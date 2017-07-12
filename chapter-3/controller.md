@@ -16,12 +16,12 @@
     + [私人方法](#private)
     + [将控制器组织到子目录中](#option)
     + [类构造函数](#constrct)
-    + 包括的属性
-        + 请求对象
-        + 响应对象
-        + 记录器对象
-        + forceHTTPS
-    + 验证$_POST数据
+    + [包括的属性](#attr)
+        + [请求对象](#request)
+        + [响应对象](#response)
+        + [日志对象](#log)
+        + [forceHTTPS](#https)
+    + [验证$_POST数据](#post)
 
 ><span id='what'>**什么是控制器？**</span>
 
@@ -191,7 +191,7 @@ public function _remap($method，...$params）
 }
 ```
 
-><span id='private'>**私人方法**</span>
+><span id='private'>**私有或保护方法**</span>
 
 在某些情况下，您可能希望公开访问隐藏某些方法。为了实现这一点，只需将该方法声明为私有或受保护的，并且不会通过URL请求来提供该方法。例如，如果你有一个这样的方法：
 
@@ -204,26 +204,26 @@ protected function utility()
 尝试通过URL访问它，如此，将无法正常工作：
 
 ```
-example.com/index.php/blog/utility/
+example.com/blog/utility/
 
 ```
 
 ><span id='option'>**将控制器组织到子目录中**</span>
 
-如果您正在构建大型应用程序，则可能希望将控制器分层组织或构建为子目录。CodeIgniter允许你这样做。
+如果您正在构建大型应用程序，则可能希望将控制器分层组织或构建为子目录。YP框架允许你这样做。
 
-简单地在主应用程序/ Controllers / 1 下创建子目录，并将控制器类放在其中。
+简单地在`app/Controllers/`下创建子目录，并将控制器类放在其中。
 
 **注意**
 
 + 使用此功能时，您的URI的第一个段必须指定该文件夹。例如，假设你有一个位于这里的控制器：
 ```
-application/controllers/products/Shoes.php
+app/controllers/products/Shoes.php
 ```
 + 要调用上述控制器，您的URI将如下所示：
 
 ```
-example.com/index.php/products/shoes/show/123
+example.com/products/shoes/show/123
 ```
 每个子目录可能包含一个默认控制器，如果URL仅包含子目录，则将调用该控制器。只需将一个控制器与您的应用程序/Config/Routes.php文件中指定的“default_controller”的名称相匹配。
 
@@ -235,6 +235,8 @@ YP还允许您使用其URI路由功能重新映射URI 。
 ```php
 
 parent::__construct(...$params);
+或
+parent::initialization();
 ```
 这一行是必要的原因是因为您的本地构造函数将覆盖父控制器类中的一个，所以我们需要手动调用它。
 
@@ -247,29 +249,35 @@ class Blog  extends \YP\Core\YP_Controller
     {
         parent::__construct(...$params);
 
-            //你自己的构造函数代码
+        //你自己的构造函数代码
+    }
+    # 或者
+    public function initialization()
+    {
+        parent::initialization();
+        //你自己的构造函数代码
     }
 }
 ```
 如果需要设置一些默认值，构造函数是有用的，或者在实例化类时运行默认进程。构造函数不能返回一个值，但是它们可以做一些默认的工作。
 
-><span id=''>**包括的属性**</span>
+><span id='attr'>**包括的属性**</span>
 
 您创建的每个控制器都应该扩展CodeIgniter \ Controller类。该类提供了所有控制器可用的几个功能。
 
-><span id=''>**请求对象**</span>
+><span id='request'>**请求对象**</span>
 
 应用程序的主要请求实例始终可用作类属性$ this->请求。
 
-><span id=''>**响应对象**</span>
+><span id='response'>**响应对象**</span>
 
 应用程序的主要响应实例始终作为类属性$ this->响应。
 
-><span id=''>**记录器对象**</span>
+><span id='log'>**日志对象**</span>
 
 Logger类的一个实例可以作为类属性 $ this-> logger。
 
-><span id=''>**forceHTTPS**</span>
+><span id='https'>**forceHTTPS**</span>
 
 所有控制器都可以使用强制通过HTTPS访问方法的方便方法：
 
@@ -302,9 +310,12 @@ if(!$this->request->isSecure())
     protected $helpers = [ 'url' ， 'form' ];
 }
 ```
-验证$ _POST数据
+
+><span id='post'>**验证$ _POST数据**</span>
+
 控制器还提供了一种方便的方法来使$ _POST数据更加简单一些，validate（）将当前请求作为第一个实例，要测试的规则数组作为第二个参数，以及可选地，定制的数组如果项目不通过，则显示错误消息。该验证库文档 对规则和信息阵列格式的详细信息，以及现有的规则：
 
+```php
 public  function  updateUser （int  $ userID ）
 {
     if  （！ $ this - > validate （$ this - > request ， [
@@ -317,10 +328,13 @@ public  function  updateUser （int  $ userID ）
         ]）;
     }
 
-    //如果成功，请在这里做某事...
+    //如果成功，请在这里写业务代码...
 }
-如果您发现在配置文件中保留规则更简单，可以使用Config \ Validation.php中定义的名称替换$ rules数组：
+```
 
+如果您发现在配置文件中保留规则更简单，可以使用`Config\Validation.php`中定义的名称替换$ rules数组：
+
+```php
 public  function  updateUser （int  $ userID ）
 {
     if  （！ $ this - > validate （$ this - > request ， 'userRules' ））
@@ -330,8 +344,9 @@ public  function  updateUser （int  $ userID ）
         ]）;
     }
 
-    //如果成功，请在这里做某事...
+    //如果成功，请在这里写业务代码...
 }
+```
 注意
 
 验证也可以在模型中自动处理。您处理有效期由您决定，您会发现控制器中的某些情况比之后的模型更简单，反之亦然。

@@ -8,7 +8,7 @@
 
 * [控制器](controller.md)
 
-* [模板渲染](render.md)
+* [Twig模板](render.md)
 
 * [钩子--扩展框架核心](hooks.md)
 

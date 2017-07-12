@@ -46,7 +46,7 @@ Content-Type: text/html; charset=UTF-8
 虽然PHP提供了与请求和响应标头交互的方法，但是和大多数框架一样，YP框架抽象出它们，以使它们具有一致的简单接口。所述`YP_IncomingRequest`类是HTTP请求的一种面向对象的表示。它提供您需要的一切：
 
 ```
-use TP\Core\YP_IncomingRequest as IncomingRequest;
+use YP\Core\YP_IncomingRequest as IncomingRequest;
 
 $request = new IncomingRequest(new \Config\App(), new \YP\Core\YP_Uri()）;
 
@@ -71,8 +71,6 @@ $request->getHeader('Content-Type');
 // 获得请求方法(GET，POST，PUT等)
 $request->getMethod();
 ```
-
-请求类在后台为您做了大量工作，您无需担心。该isAJAX()和的isSecure()方法检查几种不同的方法来确定正确答案。
 
 YP还提供了一个`YP_Response`类，它是HTTP响应的面向对象表示形式。这给您一个简单而强大的方式来构建您对客户的回应：
 
