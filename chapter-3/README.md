@@ -10,7 +10,7 @@
 
 * [Twig模板](render.md)
 
-* [钩子--扩展框架核心](hooks.md)
+* [Eloquent](eloquent.md)
 
 * [全局函数和常量](function.md)
 
