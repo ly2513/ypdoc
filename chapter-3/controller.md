@@ -41,7 +41,8 @@ example.com/index.php/Blog/
 
 ```php
 <?php
-class Blog extends \YP\Core\YP_Controller
+use YP\Core\YP_Controller as Controller;
+class Blog extends Controller
 {
         public function index()
         {
@@ -49,6 +50,7 @@ class Blog extends \YP\Core\YP_Controller
         }
 }
 ```
+
 然后将该文件保存到`/app/Controllers/`目录中。
 
 **重要提示**
@@ -65,7 +67,8 @@ Hello World!
 
 ```php
 <?php
-class Blog  extends  \YP\Core\YP_Controller
+use YP\Core\YP_Controller as Controller;
+class Blog  extends  Controller
 {
 
 }
@@ -75,7 +78,8 @@ class Blog  extends  \YP\Core\YP_Controller
 
 ```php
 <?php
-class Blog extends \YP\Core\YP_Controller
+use YP\Core\YP_Controller as Controller;
+class Blog extends Controller
 {
 
 }
@@ -93,9 +97,9 @@ class Blog extends \YP\Core\YP_Controller
 
 ```php
 <?php
-class Blog  extends \YP\Core\YP_Controller
+use YP\Core\YP_Controller as Controller;
+class Blog  extends Controller
 {
-
         public function index()
         {
             echo 'Hello World!';
@@ -121,9 +125,9 @@ class Blog  extends \YP\Core\YP_Controller
 
 ```php
 <?php
-class Products extends \YP\Core\YP_Controller
+use YP\Core\YP_Controller as Controller;
+class Products extends Controller
 {
-
     public function shoes($sandals, $id)
     {
             echo  $sandals;
@@ -143,11 +147,12 @@ class Products extends \YP\Core\YP_Controller
 ```php
 $routes->setDefaultController('Blog');
 ```
+
 “Blog”是您要使用的控制器类的名称。如果您现在加载`index.php`文件，而不指定任何URI语句，则默认情况下将显示`“Hello World”`消息。
 
 有关更多信息，请参阅URI路由文档的“路由配置选项”部分 。
 
-<span id='map'>**重映射方法调用**</span>
+><span id='map'>**重映射方法调用**</span>
 
 如上所述，URI的第二段通常确定控制器中哪个方法被调用。YP允许您通过使用`_remap()`方法来覆盖此行为：
 
@@ -175,12 +180,13 @@ public function _remap ($method)
     }
 }
 ```
-方法名后面的任何额外的段传递到_remap（）中。这些参数可以传递给方法来模拟YP的默认行为。
+
+方法名后面的任何额外的段传递到`_remap()`中。这些参数可以传递给方法来模拟YP的默认行为。
 
 例：
 
 ```php
-public function _remap($method，...$params）
+public function _remap($method, ...$params）
 {
     $method = 'process_' .$method;
     if(method_exists($this, $method))
@@ -201,6 +207,7 @@ protected function utility()
         // some code
 }
 ```
+
 尝试通过URL访问它，如此，将无法正常工作：
 
 ```
@@ -217,15 +224,17 @@ example.com/blog/utility/
 **注意**
 
 + 使用此功能时，您的URI的第一个段必须指定该文件夹。例如，假设你有一个位于这里的控制器：
+
 ```
 app/controllers/products/Shoes.php
 ```
+
 + 要调用上述控制器，您的URI将如下所示：
 
 ```
 example.com/products/shoes/show/123
 ```
-每个子目录可能包含一个默认控制器，如果URL仅包含子目录，则将调用该控制器。只需将一个控制器与您的应用程序/Config/Routes.php文件中指定的“default_controller”的名称相匹配。
+每个子目录可能包含一个默认控制器，如果URL仅包含子目录，则将调用该控制器。只需将一个控制器与您的应用程序`/Config/Routes`的名称相匹配。
 
 YP还允许您使用其URI路由功能重新映射URI 。
 
@@ -241,9 +250,11 @@ parent::initialization();
 这一行是必要的原因是因为您的本地构造函数将覆盖父控制器类中的一个，所以我们需要手动调用它。
 
 例：
-```
+
+```php
 <?php
-class Blog  extends \YP\Core\YP_Controller
+use YP\Core\YP_Controller as Controller;
+class Blog  extends Controller
 {
     public function __construct(...$params)
     {
@@ -259,29 +270,31 @@ class Blog  extends \YP\Core\YP_Controller
     }
 }
 ```
+
 如果需要设置一些默认值，构造函数是有用的，或者在实例化类时运行默认进程。构造函数不能返回一个值，但是它们可以做一些默认的工作。
 
 ><span id='attr'>**包括的属性**</span>
 
-您创建的每个控制器都应该扩展CodeIgniter \ Controller类。该类提供了所有控制器可用的几个功能。
+您创建的每个控制器都应该继承`YP\Core\YP_Controller`控制器类。该类提供了所有控制器可用的几个功能。
 
 ><span id='request'>**请求对象**</span>
 
-应用程序的主要请求实例始终可用作类属性$ this->请求。
+应用程序的主要请求实例始终可用作类属性`$this->request`。
 
 ><span id='response'>**响应对象**</span>
 
-应用程序的主要响应实例始终作为类属性$ this->响应。
+应用程序的主要响应实例始终作为类属性`$this->response`。
 
 ><span id='log'>**日志对象**</span>
 
-Logger类的一个实例可以作为类属性 $ this-> logger。
+Logger类的一个实例可以作为类属性`$this->logger`。
 
 ><span id='https'>**forceHTTPS**</span>
 
 所有控制器都可以使用强制通过HTTPS访问方法的方便方法：
 
 ```php
+
 if(!$this->request->isSecure())
 {
     $this->forceHTTPS();
@@ -291,6 +304,7 @@ if(!$this->request->isSecure())
 默认情况下，在支持HTTP Strict Transport Security标头的现代浏览器中，此调用应强制浏览器将非HTTPS调用转换为HTTPS调用一年。您可以通过将持续时间（以秒为单位）作为第一个参数进行修改：
 
 ```php
+
 if(!$this->request->isSecure())
 {
     $this->forceHTTPS(31536000);     //一年
@@ -304,8 +318,8 @@ if(!$this->request->isSecure())
 您可以将辅助文件数组定义为类属性。无论何时加载控制器，这些帮助文件将自动加载到内存中，以便您可以在控制器内的任何位置使用它们的方法：
 
 ```php
-
- MyController  extends\YP\Core\YP_Controller
+use YP\Core\YP_Controller as Controller;
+class MyController  extends Controller
 {
     protected $helpers = [ 'url' ， 'form' ];
 }
@@ -313,40 +327,47 @@ if(!$this->request->isSecure())
 
 ><span id='post'>**验证$ _POST数据**</span>
 
-控制器还提供了一种方便的方法来使$ _POST数据更加简单一些，validate（）将当前请求作为第一个实例，要测试的规则数组作为第二个参数，以及可选地，定制的数组如果项目不通过，则显示错误消息。该验证库文档 对规则和信息阵列格式的详细信息，以及现有的规则：
+控制器还提供了一种方便的方法来使`$_POST`数据更加简单一些，`validate()`将当前请求作为第一个实例，要测试的规则数组作为第二个参数，以及可选地，定制的数组如果项目不通过，则显示错误消息。该验证库文档 对规则和信息阵列格式的详细信息，以及现有的规则：
 
 ```php
-public  function  updateUser （int  $ userID ）
-{
-    if  （！ $ this - > validate （$ this - > request ， [
-        'email'  =>  “required | is_unique [users.email，id，{ $ userID } ]” ，
-        'name '  =>  'required | alpha_numeric_spaces'
-    ]））
-    {
-        return  view （'users / update' ， [
-            'errors'  =>  $ this - > errors
-        ]）;
-    }
+use YP\Core\YP_Controller as Controller;
 
-    //如果成功，请在这里写业务代码...
+class MyController  extends Controller {
+    public  function  updateUser(int  $userID)
+    {
+        if($this->validate( $this->request, [
+            'email'  =>  'required | is_unique [users.email，id，{$userID}]'，
+            'name '  =>  'required | alpha_numeric_spaces'
+        ]))
+        {
+            callBack(0，'',  $this->errors);
+        }
+
+        //如果成功，请在这里写业务代码...
+    }
 }
 ```
 
 如果您发现在配置文件中保留规则更简单，可以使用`Config\Validation.php`中定义的名称替换$ rules数组：
 
 ```php
-public  function  updateUser （int  $ userID ）
-{
-    if  （！ $ this - > validate （$ this - > request ， 'userRules' ））
+use YP\Core\YP_Controller as Controller;
+class MyController  extends Controller{
+    public  function  updateUser(int  $userID)
     {
-        return  view （'users / update' ， [
-            'errors'  =>  $ this - > errors
-        ]）;
-    }
+        if ($this->validate($this->request，'userRules'))
+        {
+            callBack(0，'',  $this->errors);
+        }
 
-    //如果成功，请在这里写业务代码...
+        //如果成功，请在这里写业务代码...
+    }
 }
 ```
+
 注意
 
 验证也可以在模型中自动处理。您处理有效期由您决定，您会发现控制器中的某些情况比之后的模型更简单，反之亦然。
+
+
+
