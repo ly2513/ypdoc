@@ -412,7 +412,59 @@
     
                                 <section class="normal markdown-section">
                                 
-                                
+                                <h1 id="&#x5168;&#x5C40;&#x51FD;&#x6570;&#x548C;&#x5E38;&#x91CF;">&#x5168;&#x5C40;&#x51FD;&#x6570;&#x548C;&#x5E38;&#x91CF;</h1>
+<p>&#x5168;&#x5C40;&#x51FD;&#x6570;&#x548C;&#x5E38;&#x91CF;</p>
+<pre><code>+ [YP&#x6846;&#x67B6;&#x5E38;&#x91CF;](#constant)
++ [YP&#x6846;&#x67B6;&#x51FD;&#x6570;](#function)
+</code></pre><blockquote>
+<p><span id="constant"><strong>YP&#x6846;&#x67B6;&#x5E38;&#x91CF;</strong></span></p>
+</blockquote>
+<pre><code class="lang-php"><span class="hljs-comment">// &#x524D;&#x7AEF;&#x8D44;&#x6E90;&#x76EE;&#x5F55;</span>
+define(<span class="hljs-string">&apos;FRONT_PATH&apos;</span>, <span class="hljs-keyword">__DIR__</span> . DIRECTORY_SEPARATOR);
+
+<span class="hljs-comment">// &#x5B9A;&#x4E49;&#x6839;&#x8DEF;&#x5F84;</span>
+define(<span class="hljs-string">&apos;ROOT_PATH&apos;</span>, dirname(<span class="hljs-keyword">__DIR__</span>) . DIRECTORY_SEPARATOR);
+
+<span class="hljs-comment">// &#x5B9A;&#x4E49;&#x5E94;&#x7528;&#x8DEF;&#x5F84;</span>
+define(<span class="hljs-string">&apos;APP_PATH&apos;</span>, rtrim(dirname(<span class="hljs-keyword">__DIR__</span>) . <span class="hljs-string">&apos;/app&apos;</span>, <span class="hljs-string">&apos;/&apos;</span>) . DIRECTORY_SEPARATOR);
+
+<span class="hljs-comment">// &#x5B9A;&#x4E49;&#x6846;&#x67B6;&#x8DEF;&#x5F84;</span>
+define(<span class="hljs-string">&apos;SYSTEM_PATH&apos;</span>, rtrim(<span class="hljs-keyword">__DIR__</span>, <span class="hljs-string">&apos;/&apos;</span>) . DIRECTORY_SEPARATOR);
+
+<span class="hljs-comment">// &#x5B9A;&#x4E49;&#x6D4B;&#x8BD5;&#x8DEF;&#x5F84;</span>
+define(<span class="hljs-string">&apos;TEST_PATH&apos;</span>, rtrim(dirname(<span class="hljs-keyword">__DIR__</span>) . <span class="hljs-string">&apos;/test&apos;</span>, <span class="hljs-string">&apos;/&apos;</span>) . DIRECTORY_SEPARATOR);
+
+<span class="hljs-comment">// &#x91CD;&#x5199;&#x76EE;&#x5F55;</span>
+define(<span class="hljs-string">&apos;WRITE_PATH&apos;</span>, rtrim(dirname(<span class="hljs-keyword">__DIR__</span>) . <span class="hljs-string">&apos;/write&apos;</span>, <span class="hljs-string">&apos;/&apos;</span>) . DIRECTORY_SEPARATOR);
+
+<span class="hljs-comment">// &#x7F13;&#x5B58;&#x76EE;&#x5F55;</span>
+define(<span class="hljs-string">&apos;CACHE_PATH&apos;</span>, rtrim(dirname(<span class="hljs-keyword">__DIR__</span>) . <span class="hljs-string">&apos;/cache&apos;</span>, <span class="hljs-string">&apos;/&apos;</span>) . DIRECTORY_SEPARATOR);
+
+<span class="hljs-comment">// &#x5B9A;&#x4E49;&#x73AF;&#x5883;&#x5E38;&#x91CF;</span>
+define(<span class="hljs-string">&apos;ENVIRONMENT&apos;</span>, <span class="hljs-keyword">isset</span>($_SERVER[<span class="hljs-string">&apos;YP_ENV&apos;</span>]) ? $_SERVER[<span class="hljs-string">&apos;YP_ENV&apos;</span>] : <span class="hljs-string">&apos;prod&apos;</span>);
+
+<span class="hljs-comment">// &#x8DDF;&#x8E2A;&#x8C03;&#x8BD5;</span>
+define(<span class="hljs-string">&apos;SHOW_DEBUG_BACKTRACE&apos;</span>, <span class="hljs-keyword">true</span>);
+
+<span class="hljs-comment">// &#x8C03;&#x8BD5;&#x6A21;&#x5F0F; 0:&#x5173;&#x95ED;&#x8C03;&#x8BD5; 1:&#x5F00;&#x59CB;&#x8C03;&#x8BD5;</span>
+define(<span class="hljs-string">&apos;YP_DEBUG&apos;</span>, <span class="hljs-number">1</span>);
+
+<span class="hljs-comment">// &#x5B9A;&#x4E49;&#x5E94;&#x7528;&#x7684;&#x547D;&#x540D;&#x7A7A;&#x95F4;</span>
+define(<span class="hljs-string">&apos;APP_NAMESPACE&apos;</span>, <span class="hljs-string">&apos;App&apos;</span>);
+
+<span class="hljs-comment">// &#x5B9A;&#x4E49;&#x9000;&#x51FA;&#x7684;&#x5E38;&#x91CF;&#x7684;&#x72B6;&#x6001;&#x7801;</span>
+defined(<span class="hljs-string">&apos;EXIT_ERROR&apos;</span>)     || define(<span class="hljs-string">&apos;EXIT_ERROR&apos;</span>,     <span class="hljs-number">1</span>);      <span class="hljs-comment">// &#x4E00;&#x822C;&#x9519;&#x8BEF;</span>
+defined(<span class="hljs-string">&apos;EXIT__AUTO_MIN&apos;</span>) || define(<span class="hljs-string">&apos;EXIT__AUTO_MIN&apos;</span>, <span class="hljs-number">9</span>);      <span class="hljs-comment">// &#x6700;&#x4F4E;&#x81EA;&#x52A8;&#x5206;&#x914D;&#x9519;&#x8BEF;</span>
+defined(<span class="hljs-string">&apos;EXIT__AUTO_MAX&apos;</span>) || define(<span class="hljs-string">&apos;EXIT__AUTO_MAX&apos;</span>, <span class="hljs-number">125</span>);    <span class="hljs-comment">// &#x6700;&#x9AD8;&#x81EA;&#x52A8;&#x5206;&#x914D;&#x9519;&#x8BEF;</span>
+
+<span class="hljs-comment">// &#x5B9A;&#x4E49;composer&#x7684;&#x81EA;&#x52A8;&#x52A0;&#x8F7D;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;</span>
+define(<span class="hljs-string">&apos;COMPOSER_PATH&apos;</span>, ROOT_PATH . <span class="hljs-string">&apos;vendor/autoload.php&apos;</span>);
+</code></pre>
+<blockquote>
+<p><span id="function"><strong>YP&#x6846;&#x67B6;&#x51FD;&#x6570;</strong></span></p>
+</blockquote>
+<p>&#x6846;&#x67B6;&#x7684;&#x51FD;&#x6570;&#x5B9A;&#x4E49;&#x5728;system&#x76EE;&#x5F55;&#x4E0B;&#x7684;Functions.php&#x548C;app/Functions&#x76EE;&#x5F55;&#x4E0B;&#x7684;Functions.php&#x4E2D;,&#x5728;&#x6B64;&#x6587;&#x6863;&#x5C31;&#x4E0D;&#x5728;&#x505A;&#x8FC7;&#x591A;&#x7684;&#x4ECB;&#x7ECD;&#x3002;</p>
+
                                 
                                 </section>
                             
@@ -455,7 +507,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"全局函数和常量","level":"1.4.6","depth":2,"next":{"title":"控制器过滤器","level":"1.4.7","depth":2,"path":"chapter-3/filter.md","ref":"chapter-3/filter.md","articles":[]},"previous":{"title":"模型","level":"1.4.5","depth":2,"path":"chapter-3/model.md","ref":"chapter-3/model.md","articles":[]},"dir":"neutral"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter-3/function.md","mtime":"2017-05-08T02:42:50.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-10-17T05:44:18.827Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"全局函数和常量","level":"1.4.6","depth":2,"next":{"title":"控制器过滤器","level":"1.4.7","depth":2,"path":"chapter-3/filter.md","ref":"chapter-3/filter.md","articles":[]},"previous":{"title":"模型","level":"1.4.5","depth":2,"path":"chapter-3/model.md","ref":"chapter-3/model.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter-3/function.md","mtime":"2017-10-17T08:07:10.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-10-17T02:23:57.351Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -463,6 +515,10 @@
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>

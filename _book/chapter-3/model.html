@@ -427,10 +427,9 @@
 <li><a href="#limit">&#x5206;&#x9875;&#x4E0E;&#x8BA1;&#x6570;</a></li>
 <li><a href="#insert">&#x63D2;&#x5165;&#x6570;&#x636E;</a></li>
 <li><a href="#update">&#x66F4;&#x65B0;&#x6570;&#x636E;</a></li>
-</ul>
-</li>
-<li><a href="#getmodel">&#x83B7;&#x53D6;&#x5355;&#x4E2A;&#x6A21;&#x578B;&#x6216;&#x8005;&#x96C6;&#x5408;</a><ul>
-<li><a href="#getaggregate">&#x53D6;&#x56DE;&#x96C6;&#x5408;</a></li>
+<li><a href="#delete">&#x5220;&#x9664;&#x6570;&#x636E;</a></li>
+<li><a href="#original">&#x539F;&#x58F0;&#x8BED;&#x53E5;&#x6267;&#x884C;</a></li>
+<li><a href="#affair">&#x4E8B;&#x52A1;</a></li>
 </ul>
 </li>
 </ul>
@@ -524,11 +523,171 @@ Eloquent &#x8BA9;&#x4E00;&#x4E2A; &apos;Model&#x7C7B;&apos; &#x5BF9;&#x5E94;&#x4
 <blockquote>
 <p><span id="where"><strong>&#x641C;&#x7D22;&#x6761;&#x4EF6;</strong></span></p>
 </blockquote>
-<p><code>Eloquent</code> &#x4E2D;<code>where</code>&#x4F7F;&#x7528;,&#x5982;&#x679C;&#x662F;&#x5BF9;&#x67D0;&#x4E2A;&#x5B57;&#x6BB5;&#x8FDB;&#x884C;&#x6761;&#x4EF6;&#x7B5B;&#x9009;,&#x6709;&#x4EE5;&#x4E0B;&#x4E24;&#x79CD;&#x5199;&#x6CD5;</p>
-<pre><code class="lang-php">    <span class="hljs-comment">// &#x7B5B;&#x9009;&#x51FA;ID&#x4E3A;5&#x7684;&#x6570;&#x636E;</span>
-    $result = DiamondInlayModel::whereId(<span class="hljs-number">5</span>)-&gt;get()-&gt;toArray();
-    <span class="hljs-comment">// &#x6216;&#x8005;</span>
-    $result = DiamondInlayModel::where(<span class="hljs-string">&apos;id&apos;</span>, <span class="hljs-number">5</span>)-&gt;get()-&gt;toArray();
+<p><code>Eloquent</code> &#x4E2D;<code>where</code>&#x4F7F;&#x7528;,&#x5982;&#x679C;&#x662F;&#x5BF9;&#x67D0;&#x4E2A;&#x5B57;&#x6BB5;&#x8FDB;&#x884C;&#x6761;&#x4EF6;&#x7B5B;&#x9009;,&#x6709;&#x4EE5;&#x4E0B;&#x4E24;&#x79CD;&#x5E38;&#x7528;&#x7684;&#x5199;&#x6CD5;</p>
+<pre><code class="lang-php"><span class="hljs-comment">// &#x7B5B;&#x9009;&#x51FA;ID&#x4E3A;5&#x7684;&#x6570;&#x636E;</span>
+$result = DiamondInlayModel::whereId(<span class="hljs-number">5</span>)-&gt;get()-&gt;toArray();
+<span class="hljs-comment">// &#x6216;&#x8005;</span>
+$result = DiamondInlayModel::where(<span class="hljs-string">&apos;id&apos;</span>, <span class="hljs-number">5</span>)-&gt;get()-&gt;toArray();
+</code></pre>
+<p>&#x5982;&#x679C;&#x641C;&#x7D22;&#x6761;&#x4EF6;&#x662F;&#x4E2A;&#x8303;&#x56F4;,&#x4F8B;&#x5982;&#x7B5B;&#x9009;ID&#x5927;&#x4E8E;&#x7B49;&#x4E8E;10&#x7684;&#x8BB0;&#x5F55;</p>
+<pre><code class="lang-php"><span class="hljs-comment">// &#x7B5B;&#x9009;&#x51FA;ID&#x5927;&#x4E8E;&#x7B49;&#x4E8E;10&#x7684;&#x6570;&#x636E;</span>
+$result = DiamondInlayModel::where(<span class="hljs-string">&apos;id&apos;</span>, <span class="hljs-string">&apos;&gt;=&apos;</span>, <span class="hljs-number">10</span>)-&gt;get()-&gt;toArray();
+</code></pre>
+<p>&#x5982;&#x679C;&#x5728;&#x67D0;&#x4E2A;&#x6570;&#x7EC4;&#x8303;&#x56F4;&#x7684;&#x6761;&#x4EF6;, &#x4F8B;&#x5982;&#x7B5B;&#x9009;&#x51FA;ID&#x5728;&#x6570;&#x7EC4;array(3,6,10,40)&#x7684;&#x8BB0;&#x5F55;,&#x91C7;&#x7528;<code>whereIn</code></p>
+<pre><code class="lang-php"><span class="hljs-comment">// &#x7B5B;&#x9009;&#x51FA;ID&#x4E3A;3&#x3001;6&#x3001;10&#x3001;40&#x7684;&#x6570;&#x636E;</span>
+$result = DiamondInlayModel::whereIn(<span class="hljs-string">&apos;id&apos;</span>, [<span class="hljs-number">3</span>, <span class="hljs-number">6</span>, <span class="hljs-number">10</span>, <span class="hljs-number">40</span>])-&gt;get()-&gt;toArray();
+</code></pre>
+<p><code>where and</code>&#x4E14;&#x6761;&#x4EF6;&#x548C;<code>where or</code>&#x6216;&#x6761;&#x4EF6;&#x5728;Eloquent&#x4E2D;&#x7684;&#x5199;&#x6CD5;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-php"><span class="hljs-comment">// &#x7B5B;&#x9009;&#x51FA;ID&#x5927;&#x4E8E;&#x7B49;&#x4E8E;10&#x4E14;&#x7528;&#x6237;&#x4E3A;3&#x7684;&#x6570;&#x636E;, &#x7528;&#x6237;&#x7684;ID&#x7684;&#x6570;&#x636E;&#x5E93;&#x5B57;&#x6BB5;create_by</span>
+$result = DiamondInlayModel::where(<span class="hljs-string">&apos;id&apos;</span>, <span class="hljs-string">&apos;&gt;=&apos;</span>, <span class="hljs-number">10</span>)-&gt;whereCreateBy(<span class="hljs-number">3</span>)-&gt;get()-&gt;toArray();
+<span class="hljs-comment">// &#x6216;</span>
+$result = DiamondInlayModel::where(<span class="hljs-string">&apos;id&apos;</span>, <span class="hljs-string">&apos;&gt;=&apos;</span>, <span class="hljs-number">10</span>)-&gt;where(<span class="hljs-string">&apos;create_by&apos;</span>, <span class="hljs-number">3</span>)-&gt;get()-&gt;toArray();
+</code></pre>
+<p>&#x6216;&#x6761;&#x4EF6;&#x4F7F;&#x7528;<strong>whereOr()</strong></p>
+<pre><code class="lang-php"><span class="hljs-comment">// &#x7B5B;&#x9009;&#x51FA;ID&#x5927;&#x4E8E;&#x7B49;&#x4E8E;10&#x6216;&#x7528;&#x6237;&#x4E3A;3&#x7684;&#x6570;&#x636E;, &#x7528;&#x6237;&#x7684;ID&#x7684;&#x6570;&#x636E;&#x5E93;&#x5B57;&#x6BB5;create_by</span>
+$result = DiamondInlayModel::where(<span class="hljs-string">&apos;id&apos;</span>, <span class="hljs-string">&apos;&gt;=&apos;</span>, <span class="hljs-number">10</span>)-&gt;whereOr(<span class="hljs-string">&apos;create_by&apos;</span>, <span class="hljs-number">3</span>)-&gt;get()-&gt;toArray();
+</code></pre>
+<blockquote>
+<p><span id="like"><strong>&#x6A21;&#x7CCA;&#x641C;&#x7D22;</strong></span></p>
+</blockquote>
+<p>Eloquent&#x4E2D;<strong>like()</strong>&#x7684;&#x4F7F;&#x7528;,</p>
+<p>&#x6A21;&#x7CCA;&#x641C;&#x7D22;&#x540D;&#x79F0;&#x4E3A; &quot;18K&#x5FC3;&#x5F62;&quot; &#x7684;&#x94BB;&#x9970;</p>
+<pre><code class="lang-php"><span class="hljs-comment">// &#x641C;&#x7D22;18K&#x5FC3;&#x5F62;&#x7684;&#x94BB;&#x9970;</span>
+$result = DiamondInlayModel::like(<span class="hljs-string">&apos;name&apos;</span>, <span class="hljs-string">&apos;%18K&#x5FC3;&#x5F62;%&apos;</span>)-&gt;get()-&gt;toArray();
+
+<span class="hljs-comment">// &#x641C;&#x7D22;&#x540D;&#x79F0;&#x4EE5;18K&#x5FC3;&#x5F62;&#x5F00;&#x5934;&#x7684;&#x94BB;&#x9970;</span>
+$result = DiamondInlayModel::like(<span class="hljs-string">&apos;name&apos;</span>, <span class="hljs-string">&apos;18K&#x5FC3;&#x5F62;%&apos;</span>)-&gt;get()-&gt;toArray();
+
+<span class="hljs-comment">// &#x641C;&#x7D22;&#x540D;&#x79F0;&#x4EE5;18K&#x5FC3;&#x5F62;&#x7ED3;&#x5C3E;&#x7684;&#x94BB;&#x9970;</span>
+$result = DiamondInlayModel::like(<span class="hljs-string">&apos;name&apos;</span>, <span class="hljs-string">&apos;%18K&#x5FC3;&#x5F62;&apos;</span>)-&gt;get()-&gt;toArray();
+</code></pre>
+<blockquote>
+<p><span id="group"><strong>&#x5206;&#x7EC4;</strong></span></p>
+</blockquote>
+<p>&#x91C7;&#x7528;<strong>groupBy()</strong>&#x8FDB;&#x884C;&#x5206;&#x7EC4;,&#x4F8B;&#x5982;: &#x6839;&#x636E;&#x5546;&#x54C1;&#x7684;&#x72B6;&#x6001;&#x5206;&#x7EC4;,&#x4F8B;&#x5982;:</p>
+<pre><code class="lang-php"><span class="hljs-comment">// &#x6839;&#x636E;&#x5546;&#x54C1;&#x7684;&#x72B6;&#x6001;&#x5206;&#x7EC4;</span>
+$result = DiamondInlayModel::select(<span class="hljs-string">&apos;*&apos;</span>)-&gt;groupBy(<span class="hljs-string">&apos;status&apos;</span>)-&gt;get()-&gt;toArray();
+</code></pre>
+<blockquote>
+<p><span id="order"><strong>&#x6392;&#x5E8F;</strong></span></p>
+</blockquote>
+<p>Eloquent&#x4E2D;&#x4F7F;&#x7528;<strong>orderBy()</strong>&#x5BF9;&#x7ED3;&#x679C;&#x96C6;&#x8FDB;&#x884C;&#x6392;&#x5E8F;,&#x4F8B;&#x5982;:</p>
+<pre><code class="lang-php"><span class="hljs-comment">// &#x6839;&#x636E;&#x5546;&#x54C1;&#x7684;&#x6DFB;&#x52A0;&#x65F6;&#x95F4;&#x5012;&#x5E8F;&#x6392;</span>
+$result = DiamondInlayModel::select(<span class="hljs-string">&apos;*&apos;</span>)-&gt;orderBy(<span class="hljs-string">&apos;create_time&apos;</span>, <span class="hljs-string">&apos;desc&apos;</span>)-&gt;get()-&gt;toArray();
+
+<span class="hljs-comment">// &#x6839;&#x636E;&#x5546;&#x54C1;&#x7684;&#x6DFB;&#x52A0;&#x65F6;&#x95F4;&#x5347;&#x5E8F;&#x6392;</span>
+$result = DiamondInlayModel::select(<span class="hljs-string">&apos;*&apos;</span>)-&gt;orderBy(<span class="hljs-string">&apos;create_time&apos;</span>, <span class="hljs-string">&apos;asc&apos;</span>)-&gt;get()-&gt;toArray();
+</code></pre>
+<blockquote>
+<p><span id="limit"><strong>&#x5206;&#x9875;&#x4E0E;&#x8BA1;&#x6570;</strong></span></p>
+</blockquote>
+<p>&#x5728;&#x5E94;&#x7528;&#x4E2D;&#x901A;&#x5E38;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x7684;&#x6570;&#x636E;&#x5E93;&#x8F6F;&#x4EF6;&#x662F;mysql, &#x6211;&#x5E38;&#x7528;<code>limit</code>&#x8FDB;&#x884C;&#x5206;&#x9875;&#x5904;&#x7406;, &#x5728;Eloquent&#x4E2D;,&#x5219;&#x91C7;&#x7528;<code>skip()</code>&#x65B9;&#x6CD5;&#x548C;<code>take()</code>&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x5206;&#x9875;&#x5904;&#x7406;&#x3002;&#x4F8B;&#x5982;:</p>
+<pre><code class="lang-php"><span class="hljs-comment">// &#x5BF9;&#x5546;&#x54C1;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x6BCF;&#x9875;&#x663E;&#x793A;15&#x6761;&#x5904;&#x7406;</span>
+$result = DiamondInlayModel::select(<span class="hljs-string">&apos;*&apos;</span>)-&gt;skip((<span class="hljs-string">&apos;&#x5F53;&#x524D;&#x9875;&#x7801;&apos;</span> - <span class="hljs-number">1</span> ) * <span class="hljs-number">15</span>)-&gt;take(<span class="hljs-number">15</span>)-&gt;get()-&gt;toArray();
+</code></pre>
+<p>&#x5982;&#x9700;&#x5BF9;&#x67E5;&#x51FA;&#x7684;&#x8BB0;&#x5F55;&#x8FDB;&#x884C;&#x7EDF;&#x8BA1;, &#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>count()</code>&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x7EDF;&#x8BA1;&#x7ED3;&#x679C;&#x6570;&#x91CF;&#x3002;&#x4F8B;&#x5982;:</p>
+<pre><code class="lang-php"><span class="hljs-comment">// &#x5BF9;&#x5546;&#x54C1;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x6BCF;&#x9875;&#x663E;&#x793A;15&#x6761;&#x5904;&#x7406;</span>
+$number = DiamondInlayModel::select(<span class="hljs-string">&apos;*&apos;</span>)-&gt;skip((<span class="hljs-string">&apos;&#x5F53;&#x524D;&#x9875;&#x7801;&apos;</span> - <span class="hljs-number">1</span> ) * <span class="hljs-number">15</span>)-&gt;take(<span class="hljs-number">15</span>)-&gt;count();
+</code></pre>
+<blockquote>
+<p><span id="insert"><strong>&#x63D2;&#x5165;&#x6570;&#x636E;</strong></span></p>
+</blockquote>
+<p>&#x63D2;&#x5165;&#x6570;&#x636E;&#x53EF;&#x4EE5;&#x5206;&#x4E3A;&#x5355;&#x6761;&#x63D2;&#x5165;&#x548C;&#x6279;&#x91CF;&#x63D2;&#x5165;&#x4E24;&#x79CD;, &#x5206;&#x522B;&#x901A;&#x8FC7;<code>insertGetId()</code>&#x65B9;&#x6CD5;&#x548C;<code>insert()</code>&#x65B9;&#x6CD5;&#x5B9E;&#x73B0;&#x3002;&#x4F8B;&#x5982;:</p>
+<pre><code class="lang-php"><span class="hljs-comment">// &#x63D2;&#x5165;&#x7684;&#x6570;&#x636E;</span>
+$data = [<span class="hljs-string">&apos;name1&apos;</span>, <span class="hljs-string">&apos;status1&apos;</span>, <span class="hljs-string">&apos;create_by1&apos;</span>, <span class="hljs-string">&apos;create_time1&apos;</span>, ... ];
+<span class="hljs-comment">// &#x63D2;&#x5165;&#x4E00;&#x6761;&#x5546;&#x54C1;&#x6570;&#x636E;, &#x64CD;&#x4F5C;&#x6210;&#x529F;&#x540E;, &#x8BE5;&#x65B9;&#x6CD5;&#x5C06;&#x8FD4;&#x56DE;&#x81EA;&#x589E;ID, &#x5931;&#x8D25;&#x8FD4;&#x56DE;false</span>
+$number = DiamondInlayModel::insertGetId($data);
+
+
+<span class="hljs-comment">// &#x6279;&#x91CF;&#x63D2;&#x5165;&#x7684;&#x6570;&#x636E;</span>
+$data = [
+    [<span class="hljs-string">&apos;name1&apos;</span>, <span class="hljs-string">&apos;status1&apos;</span>, <span class="hljs-string">&apos;create_by1&apos;</span>, <span class="hljs-string">&apos;create_time1&apos;</span>, ... ],
+    [<span class="hljs-string">&apos;name2&apos;</span>, <span class="hljs-string">&apos;status2&apos;</span>, <span class="hljs-string">&apos;create_by2&apos;</span>, <span class="hljs-string">&apos;create_time2&apos;</span>, ... ],
+    ...
+];
+
+<span class="hljs-comment">// &#x6279;&#x91CF;&#x63D2;&#x5165;&#x591A;&#x6761;&#x5546;&#x54C1;&#x6570;&#x636E;, &#x64CD;&#x4F5C;&#x6210;&#x529F;&#x540E;, &#x8BE5;&#x65B9;&#x6CD5;&#x5C06;&#x8FD4;&#x56DE;true, &#x5931;&#x8D25;&#x8FD4;&#x56DE;false</span>
+$number = DiamondInlayModel::insert($data);
+</code></pre>
+<blockquote>
+<p><span id="update"><strong>&#x66F4;&#x65B0;&#x6570;&#x636E;</strong></span></p>
+</blockquote>
+<p>&#x66F4;&#x65B0;&#x6570;&#x636E;&#x540C;&#x6837;&#x5206;&#x5355;&#x6761;&#x66F4;&#x65B0;&#x548C;&#x591A;&#x6761;&#x66F4;&#x65B0;, &#x5206;&#x5E03;&#x901A;&#x8FC7;<code>update()</code>&#x65B9;&#x6CD5;&#x548C;<code>batchUpdate()</code>&#x65B9;&#x6CD5;&#x5B9E;&#x73B0;&#x3002;&#x4F8B;&#x5982;</p>
+<pre><code class="lang-php"><span class="hljs-comment">// &#x66F4;&#x65B0;&#x7684;&#x6570;&#x636E;</span>
+$data = [<span class="hljs-number">2</span>, <span class="hljs-string">&apos;name1&apos;</span>, <span class="hljs-string">&apos;status1&apos;</span>, <span class="hljs-string">&apos;create_by1&apos;</span>, <span class="hljs-string">&apos;create_time1&apos;</span>, ... ];
+<span class="hljs-comment">// &#x66F4;&#x65B0;&#x4E00;&#x6761;&#x5546;&#x54C1;&#x6570;&#x636E;, &#x64CD;&#x4F5C;&#x6210;&#x529F;&#x540E;, &#x8BE5;&#x65B9;&#x6CD5;&#x5C06;&#x8FD4;&#x56DE;true, &#x5931;&#x8D25;&#x8FD4;&#x56DE;false</span>
+$number = DiamondInlayModel::whereId(<span class="hljs-number">2</span>)-&gt;insertGetId($data);
+
+<span class="hljs-comment">// &#x6279;&#x91CF;&#x66F4;&#x65B0;&#x7684;&#x6570;&#x636E;</span>
+$data = [
+    [<span class="hljs-number">2</span>, <span class="hljs-string">&apos;name1&apos;</span>, <span class="hljs-string">&apos;status1&apos;</span>, <span class="hljs-string">&apos;create_by1&apos;</span>, <span class="hljs-string">&apos;create_time1&apos;</span>, ... ],
+    [<span class="hljs-number">3</span>, <span class="hljs-string">&apos;name2&apos;</span>, <span class="hljs-string">&apos;status2&apos;</span>, <span class="hljs-string">&apos;create_by2&apos;</span>, <span class="hljs-string">&apos;create_time2&apos;</span>, ... ],
+    ...
+];
+
+<span class="hljs-comment">// &#x6279;&#x91CF;&#x66F4;&#x65B0;&#x591A;&#x6761;&#x5546;&#x54C1;&#x6570;&#x636E;, &#x64CD;&#x4F5C;&#x6210;&#x529F;&#x540E;, &#x8BE5;&#x65B9;&#x6CD5;&#x5C06;&#x8FD4;&#x56DE;true, &#x5931;&#x8D25;&#x8FD4;&#x56DE;false</span>
+$number = DiamondInlayModel::batchUpdate($data);
+</code></pre>
+<blockquote>
+<p><span id="delete"><strong>&#x5220;&#x9664;&#x6570;&#x636E;</strong></span></p>
+</blockquote>
+<p>&#x5220;&#x9664;&#x6570;&#x636E;&#x4F7F;&#x7528;<code>update()</code>&#x65B9;&#x6CD5;&#x5BF9;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x8F6F;&#x5220;&#x9664;&#x7684;&#x3002;&#x4F8B;&#x5982;:</p>
+<pre><code class="lang-php">    <span class="hljs-comment">// &#x5220;&#x9664;ID&#x4E3A;4&#x7684;&#x5546;&#x54C1;&#x6570;&#x636E;</span>
+    $status = DiamondInlayModel::whereId(<span class="hljs-number">4</span>)-&gt;update[<span class="hljs-string">&apos;is_delete&apos;</span> =&gt; <span class="hljs-number">1</span>];
+</code></pre>
+<p>&#x4EE5;&#x4E0A;&#x5173;&#x952E;&#x5B57;&#x67E5;&#x8BE2;&#x90FD;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x94FE;&#x5F0F;&#x64CD;&#x4F5C;,&#x53EA;&#x662F;&#x5728;&#x8BB2;&#x89E3;&#x65F6;&#x65B9;&#x4FBF;&#x5BF9;&#x67D0;&#x4E2A;&#x5173;&#x952E;&#x5B57;&#x65B9;&#x6CD5;&#x7406;&#x89E3;&#x6F14;&#x793A;, &#x6CA1;&#x6709;&#x91C7;&#x7528;&#x94FE;&#x5F0F;&#x64CD;&#x4F5C;&#x3002;</p>
+<blockquote>
+<p><span id="original"><strong>&#x539F;&#x58F0;&#x8BED;&#x53E5;&#x6267;&#x884C;</strong></span></p>
+</blockquote>
+<p>&#x5728;&#x5F00;&#x53D1;&#x7684;&#x5E94;&#x7528;&#x8FC7;&#x7A0B;&#x4E2D;, &#x6216;&#x591A;&#x6216;&#x5C11;&#x9700;&#x8981;&#x6267;&#x884C;&#x4E00;&#x4E9B;&#x590D;&#x6742;&#x7684;sql&#x8BED;&#x53E5;,&#x5982;&#x679C;&#x91C7;&#x7528;Eloquent&#x53BB;&#x62FC;&#x590D;&#x6742;&#x7684;SQL&#x65F6;, Eloquent&#x4F7F;&#x7528;&#x8D77;&#x6765;&#x5C31;&#x663E;&#x5F97;&#x7279;&#x522B;&#x590D;&#x6742;, &#x8FD9;&#x65F6;&#x6211;&#x4EEC;&#x4F1A;&#x66F4;&#x591A;&#x7684;&#x9009;&#x62E9;&#x4F7F;&#x7528;&#x539F;&#x58F0;SQL&#x8BED;&#x53E5;&#x3002;
+&#x90A3;&#x4E48;&#x5728;&#x6846;&#x67B6;&#x4E2D;&#x600E;&#x4E48;&#x6267;&#x884C;&#x539F;&#x58F0;SQL&#x8BED;&#x53E5;&#x4E86;, &#x901A;&#x5E38;&#x6846;&#x67B6;&#x7ED9;&#x51FA;&#x4E24;&#x79CD;&#x4E0D;&#x540C;&#x65B9;&#x5F0F;&#x7684;&#x6765;&#x5B9E;&#x73B0;&#x539F;&#x58F0;SQL&#x7684;&#x6267;&#x884C;&#x3002;&#x4EE5;&#x4E0B;&#x662F;&#x5B9E;&#x73B0;&#x7684;&#x4EE3;&#x7801;:</p>
+<pre><code class="lang-php"><span class="hljs-comment">// &#x6570;&#x636E;&#x5E93;&#x6A21;&#x578B;</span>
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Capsule</span>\<span class="hljs-title">Manager</span> <span class="hljs-title">as</span> <span class="hljs-title">DB</span>;
+
+<span class="hljs-comment">// &#x8BA2;&#x5355;ID</span>
+$orderIds = [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">73</span>];
+<span class="hljs-comment">// &#x539F;&#x58F0;SQL&#x7684;&#x67E5;&#x8BE2;&#x8BED;&#x53E5;</span>
+$sql = <span class="hljs-string">&apos;SELECT ga.name, ga.image , rog.order_id FROM zb_retail_order_goods AS rog  LEFT JOIN zb_retail_goods_all AS ga ON rog.gid = ga.goods_id AND ga.type = rog.goods_type WHERE rog.order_id in ( &apos;</span> . $orderIds . <span class="hljs-string">&apos;)&apos;</span>;
+<span class="hljs-comment">// &#x7ED3;&#x679C;&#x96C6;</span>
+$result = DB::select($sql);
+
+<span class="hljs-comment">// &#x539F;&#x58F0;&#x63D2;&#x5165;SQL&#x8BED;&#x53E5;</span>
+DB::insert(<span class="hljs-string">&apos;insert into users (id, name) values (?, ?)&apos;</span>, [<span class="hljs-number">1</span>, <span class="hljs-string">&apos;Dayle&apos;</span>]);
+
+<span class="hljs-comment">// &#x539F;&#x58F0;&#x66F4;&#x65B0;SQL&#x8BED;&#x53E5;</span>
+$affected = DB::update(<span class="hljs-string">&apos;update users set votes = 100 where name = ?&apos;</span>, [<span class="hljs-string">&apos;John&apos;</span>]);
+
+<span class="hljs-comment">// &#x539F;&#x58F0;&#x7684;&#x5220;&#x9664;SQL&#x8BED;&#x53E5;(&#x7269;&#x7406;&#x5220;&#x9664;)</span>
+$deleted = DB::delete(<span class="hljs-string">&apos;delete from users&apos;</span>);
+</code></pre>
+<blockquote>
+<p><span id="affair"><strong>&#x4E8B;&#x52A1;</strong></span></p>
+</blockquote>
+<p>&#x73B0;&#x5728;&#x7684;&#x5E94;&#x7528;&#x7684;&#x5904;&#x7406;&#x6570;&#x636E;&#x5E38;&#x5E38;&#x4E00;&#x4E2A;&#x64CD;&#x4F5C;&#x9700;&#x8981;&#x540C;&#x65F6;&#x5BF9;&#x591A;&#x4E2A;&#x6570;&#x636E;&#x8868;&#x7684;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x5904;&#x7406;, &#x4E3A;&#x4FDD;&#x8BC1;&#x64CD;&#x4F5C;&#x7684;&#x6570;&#x636E;&#x90FD;&#x64CD;&#x4F5C;&#x6210;&#x529F;,&#x8FD9;&#x6837;&#x6570;&#x636E;&#x7684;&#x5173;&#x8054;&#x4EFB;&#x4F55;&#x65F6;&#x5019;&#x90FD;&#x662F;&#x4E00;&#x81F4;&#x7684;&#x3002;&#x8FD9;&#x6837;&#x7684;&#x573A;&#x666F;&#x4E0B;&#x9700;&#x8981;&#x7528;&#x5230;&#x4E8B;&#x52A1;,
+&#x76EE;&#x524D;mysql&#x6570;&#x636E;&#x5E93;&#x8F6F;&#x4EF6;&#x5E38;&#x7528;&#x7684;&#x4E8B;&#x52A1;&#x5B58;&#x50A8;&#x5F15;&#x64CE;&#x662F;<code>innoDB</code>&#x3002;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x5728;&#x8BBE;&#x8BA1;&#x6570;&#x636E;&#x5E93;&#x7684;&#x65F6;&#x5019;&#x4E00;&#x822C;&#x4F1A;&#x9009;&#x62E9;<code>innoDB</code>&#x4F5C;&#x4E3A;&#x6570;&#x636E;&#x5E93;&#x7684;&#x5B58;&#x50A8;&#x5F15;&#x64CE;&#x3002;
+&#x90A3;&#x4E48;&#x95EE;&#x9898;&#x6765;&#x4E86;,&#x5728;YP&#x6846;&#x67B6;&#x4E2D;&#x600E;&#x4E48;&#x4F7F;&#x7528;&#x4E8B;&#x52A1;&#x4E86;? &#x6846;&#x67B6;&#x7ED9;&#x51FA;&#x4E86;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x5B9E;&#x73B0;&#x4E8B;&#x52A1;,&#x4E00;&#x79CD;&#x662F;&#x539F;&#x58F0;&#x7684;model,&#x4E00;&#x79CD;&#x662F;Eloquent&#x5B9E;&#x73B0;,&#x4EE3;&#x7801;&#x5982;&#x4E0B;:</p>
+<pre><code class="lang-php">$build = DiamondInlayModel::select();
+<span class="hljs-comment">// &#x5F00;&#x542F;&#x4E8B;&#x52A1;</span>
+$build-&gt;getConnection()-&gt;beginTransaction();
+
+<span class="hljs-comment">// &#x63D0;&#x4EA4;&#x4E8B;&#x52A1;</span>
+$build-&gt;getConnection()-&gt;commit();
+
+<span class="hljs-comment">// &#x56DE;&#x6EDA;&#x4E8B;&#x52A1;</span>
+$build-&gt;getConnection()-&gt;rollBack();
+</code></pre>
+<p>&#x7B2C;&#x4E8C;&#x79CD;&#x65B9;&#x5F0F;&#x5982;&#x4E0B;:</p>
+<pre><code class="lang-php"><span class="hljs-comment">// &#x6570;&#x636E;&#x5E93;&#x6A21;&#x578B;</span>
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Capsule</span>\<span class="hljs-title">Manager</span> <span class="hljs-title">as</span> <span class="hljs-title">DB</span>;
+
+<span class="hljs-comment">// &#x5F00;&#x542F;&#x4E8B;&#x52A1;</span>
+DB::beginTransaction();
+
+<span class="hljs-comment">// &#x63D0;&#x4EA4;&#x4E8B;&#x52A1;</span>
+DB::commit();
+
+<span class="hljs-comment">// &#x4E8B;&#x52A1;&#x56DE;&#x6EDA;</span>
+DB::rollBack();
 </code></pre>
 
                                 
@@ -573,7 +732,7 @@ Eloquent &#x8BA9;&#x4E00;&#x4E2A; &apos;Model&#x7C7B;&apos; &#x5BF9;&#x5E94;&#x4
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"模型","level":"1.4.5","depth":2,"next":{"title":"全局函数和常量","level":"1.4.6","depth":2,"path":"chapter-3/function.md","ref":"chapter-3/function.md","articles":[]},"previous":{"title":"Twig模板","level":"1.4.4","depth":2,"path":"chapter-3/render.md","ref":"chapter-3/render.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter-3/model.md","mtime":"2017-10-17T05:40:28.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-10-17T05:44:18.827Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"模型","level":"1.4.5","depth":2,"next":{"title":"全局函数和常量","level":"1.4.6","depth":2,"path":"chapter-3/function.md","ref":"chapter-3/function.md","articles":[]},"previous":{"title":"Twig模板","level":"1.4.4","depth":2,"path":"chapter-3/render.md","ref":"chapter-3/render.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter-3/model.md","mtime":"2017-10-17T07:41:45.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-10-17T02:23:57.351Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -581,6 +740,10 @@ Eloquent &#x8BA9;&#x4E00;&#x4E2A; &apos;Model&#x7C7B;&apos; &#x5BF9;&#x5E94;&#x4
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>

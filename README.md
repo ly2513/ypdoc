@@ -23,7 +23,7 @@ YP1.0版本是web应用程序开发框架 **--开发工具包**,适用于使用P
 
   + **采用最新的PHP7.1开发，具有PHP7.1的新特性及新的语法**
 
-  + **集成了Queue、Doctrine、Eloquent、Json-Schema等一些组件**
+  + **集成了Queue、Doctrine、Eloquent、Json-Schema、Thrift等一些组件**
 
   + **自带参数验证功能**
 

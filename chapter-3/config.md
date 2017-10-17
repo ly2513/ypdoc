@@ -7,7 +7,8 @@
 **访问配置文件**
 
 您可以通过创建一个实例来访问类中的配置属性。所有的属性都是公共的，所以你可以访问任何其他属性的设置：
-```
+
+```php
 $config = new \Config\Email();
 
 //将设置作为类属性访问
@@ -23,14 +24,14 @@ $mailpath = $config->password ;
 
 如果您需要创建一个新的配置文件，您将默认在所需位置`/app/Config`中创建一个新文件 。然后创建该类并使用您的设置的公共属性填充它：
 
-```
+```php
 <?php
-    namespace Config;
+namespace Config;
 
 class App  extends \YP\Config\BaseConfig{
 
-        public  $uriProtocol  =  'REQUEST_URI ;
-        public $appTimezone  =  'Asia/Shanghai' ;
+        public $uriProtocol = 'REQUEST_URI';
+        public $appTimezone = 'Asia/Shanghai';
 
 }
 ```
@@ -46,7 +47,7 @@ class App  extends \YP\Config\BaseConfig{
 
 当您的应用程序运行时，该文件将被自动加载，变量将被放入环境中。这将在除生产之外的任何环境中工作，其中应通过getServer支持的任何方式（如.htaccess文件等）在环境中设置变量。然后，这些变量可通过`getenv()`，`$_SERVER`和`$_ENV`。在三个中，推荐使用`getenv()`函数，因为它不区分大小写：
 
-```
+```php
 $s3_bucket = getenv('S3_BUCKET');
 $s3_bucket = $_ENV['S3_BUCKET'];
 $s3_bucket = $_SERVER['S3_BUCKET'];
@@ -55,8 +56,8 @@ $s3_bucket = $_SERVER['S3_BUCKET'];
 
 要保存键入，可以通过在`${...}`中包含变量名称来重用您在文件中指定的变量：
 
-```
-BASE_DIR = “/var/webroot/project-root”
-CACHE_DIR = “${BASE_DIR}/cache”
-TMP_DIR = “${BASE_DIR}/tmp”
+```php
+BASE_DIR  = '/var/webroot/project-root';
+CACHE_DIR = "${BASE_DIR}/cache";
+TMP_DIR   = "${BASE_DIR}/tmp";
 ```
