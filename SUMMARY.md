@@ -15,7 +15,7 @@
     * [YP URL](chapter-3/url.md)
     * [控制器](chapter-3/controller.md)
     * [Twig模板](chapter-3/render.md)
-    * [Eloquent](chapter-3/eloquent.md)
+    * [模型](chapter-3/model.md)
     * [全局函数和常量](chapter-3/function.md)
     * [控制器过滤器](chapter-3/filter.md)
     * [URL 路由](chapter-3/urlRouter.md)

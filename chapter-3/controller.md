@@ -13,7 +13,7 @@
     + [将URI段传递给您的方法](#uri)
     + [定义默认控制器](#controller)
     + [重映射方法调用](#map)
-    + [私人方法](#private)
+    + [私有方法](#private)
     + [将控制器组织到子目录中](#option)
     + [类构造函数](#constrct)
     + [包括的属性](#attr)
@@ -340,7 +340,7 @@ class MyController  extends Controller {
             'name '  =>  'required | alpha_numeric_spaces'
         ]))
         {
-            callBack(0，'',  $this->errors);
+            call_back(0，'',  $this->errors);
         }
 
         //如果成功，请在这里写业务代码...
@@ -357,7 +357,7 @@ class MyController  extends Controller{
     {
         if ($this->validate($this->request，'userRules'))
         {
-            callBack(0，'',  $this->errors);
+            call_back(0，'',  $this->errors);
         }
 
         //如果成功，请在这里写业务代码...

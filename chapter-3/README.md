@@ -10,7 +10,7 @@
 
 * [Twig模板](render.md)
 
-* [Eloquent](eloquent.md)
+* [Model](model.md)
 
 * [全局函数和常量](function.md)
 
