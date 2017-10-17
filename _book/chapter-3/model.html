@@ -501,7 +501,7 @@ Eloquent &#x8BA9;&#x4E00;&#x4E2A; &apos;Model&#x7C7B;&apos; &#x5BF9;&#x5E94;&#x4
 <pre><code class="lang-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title">App</span>\<span class="hljs-title">Controllers</span>\<span class="hljs-title">Goods</span>;
 
 <span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Controllers</span>\<span class="hljs-title">Admin</span>\<span class="hljs-title">Auth</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">Goods</span>\<span class="hljs-title">DiamondInlayModel</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">DiamondInlayModel</span>;
 
 <span class="hljs-comment">/**
  * &#x94BB;&#x9970;&#x8D27;&#x54C1;&#x7BA1;&#x7406;
@@ -514,10 +514,21 @@ Eloquent &#x8BA9;&#x4E00;&#x4E2A; &apos;Model&#x7C7B;&apos; &#x5BF9;&#x5E94;&#x4
 </span>{
     <span class="hljs-comment">// &#x67E5;&#x8BE2;&#x8868;&#x4E2D;&#x6240;&#x6709;&#x7684;&#x5B57;&#x6BB5;</span>
     $result = DiamondInlayModel::select(<span class="hljs-string">&apos;*&apos;</span>)-&gt;get()-&gt;toArray();
+    <span class="hljs-comment">// &#x6216;&#x8005;</span>
+    $result = DiamondInlayModel::get()-&gt;toArray();
 
     <span class="hljs-comment">// &#x67E5;&#x8BE2;&#x8868;&#x4E2D;&#x90E8;&#x5206;&#x5B57;&#x6BB5;</span>
-    $result = DiamondInlayModel::select([<span class="hljs-string">&apos;&#x5B57;&#x6BB5;&#x540D;&apos;</span>])-&gt;get()-&gt;toArray();
+    $result = DiamondInlayModel::select([<span class="hljs-string">&apos;&#x5B57;&#x6BB5;1&apos;</span>, <span class="hljs-string">&apos;&#x5B57;&#x6BB5;2&apos;</span>, ...])-&gt;get()-&gt;toArray();
 }
+</code></pre>
+<blockquote>
+<p><span id="where"><strong>&#x641C;&#x7D22;&#x6761;&#x4EF6;</strong></span></p>
+</blockquote>
+<p><code>Eloquent</code> &#x4E2D;<code>where</code>&#x4F7F;&#x7528;,&#x5982;&#x679C;&#x662F;&#x5BF9;&#x67D0;&#x4E2A;&#x5B57;&#x6BB5;&#x8FDB;&#x884C;&#x6761;&#x4EF6;&#x7B5B;&#x9009;,&#x6709;&#x4EE5;&#x4E0B;&#x4E24;&#x79CD;&#x5199;&#x6CD5;</p>
+<pre><code class="lang-php">    <span class="hljs-comment">// &#x7B5B;&#x9009;&#x51FA;ID&#x4E3A;5&#x7684;&#x6570;&#x636E;</span>
+    $result = DiamondInlayModel::whereId(<span class="hljs-number">5</span>)-&gt;get()-&gt;toArray();
+    <span class="hljs-comment">// &#x6216;&#x8005;</span>
+    $result = DiamondInlayModel::where(<span class="hljs-string">&apos;id&apos;</span>, <span class="hljs-number">5</span>)-&gt;get()-&gt;toArray();
 </code></pre>
 
                                 
@@ -562,7 +573,7 @@ Eloquent &#x8BA9;&#x4E00;&#x4E2A; &apos;Model&#x7C7B;&apos; &#x5BF9;&#x5E94;&#x4
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"模型","level":"1.4.5","depth":2,"next":{"title":"全局函数和常量","level":"1.4.6","depth":2,"path":"chapter-3/function.md","ref":"chapter-3/function.md","articles":[]},"previous":{"title":"Twig模板","level":"1.4.4","depth":2,"path":"chapter-3/render.md","ref":"chapter-3/render.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter-3/model.md","mtime":"2017-10-17T03:39:17.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-10-17T04:34:46.903Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"模型","level":"1.4.5","depth":2,"next":{"title":"全局函数和常量","level":"1.4.6","depth":2,"path":"chapter-3/function.md","ref":"chapter-3/function.md","articles":[]},"previous":{"title":"Twig模板","level":"1.4.4","depth":2,"path":"chapter-3/render.md","ref":"chapter-3/render.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter-3/model.md","mtime":"2017-10-17T05:40:28.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-10-17T05:44:18.827Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

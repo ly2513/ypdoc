@@ -90,7 +90,7 @@ YP_Model继承了Eloquent,在YP框架中,我们在控制器中去使用模型,�
 namespace App\Controllers\Goods;
 
 use App\Controllers\Admin\Auth;
-use Goods\DiamondInlayModel;
+use DiamondInlayModel;
 
 /**
  * 钻饰货品管理
@@ -103,8 +103,22 @@ class DiamondInlay extends Auth
 {
     // 查询表中所有的字段
     $result = DiamondInlayModel::select('*')->get()->toArray();
+    // 或者
+    $result = DiamondInlayModel::get()->toArray();
 
     // 查询表中部分字段
-    $result = DiamondInlayModel::select(['字段名'])->get()->toArray();
+    $result = DiamondInlayModel::select(['字段1', '字段2', ...])->get()->toArray();
 }
 ```
+
+><span id='where'>**搜索条件**</span>
+
+`Eloquent` 中`where`使用,如果是对某个字段进行条件筛选,有以下两种写法
+```php
+    // 筛选出ID为5的数据
+    $result = DiamondInlayModel::whereId(5)->get()->toArray();
+    // 或者
+    $result = DiamondInlayModel::where('id', 5)->get()->toArray();
+
+```
+
