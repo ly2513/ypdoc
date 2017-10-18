@@ -26,6 +26,8 @@ YPPHP
     |     |       |---- 第三方组件目录
     |     |____Views
     |             |---- 视图目录
+    |_____Cache
+    |      |-----存放缓存(session信息、模板缓存、日志等等)
     |_____public
     |      |____index.php
     |      |      |---- 框架入口
@@ -37,8 +39,6 @@ YPPHP
     |     |   |----框架目录
     |     |____Config
     |     |       |-----各种框架的配置
-    |     |____Cache
-    |     |       |-----存放缓存(session信息、模板缓存、日志等等)
     |     |____Core
     |     |       |____Functions.php
     |     |       |       |---- 框架自用函数文件
@@ -46,7 +46,7 @@ YPPHP
     |     |       |       |---- 基类控制器
     |     |       |____YP_Exceptions.php
     |     |       |       |---- 异常处理类
-    |     |        |____YP_Filter.php
+    |     |       |____YP_Filter.php
     |     |       |       |---- 过滤处理类
     |     |       |____YP_Hooks.php
     |     |       |       |---- 各种钩子处理类
@@ -69,13 +69,25 @@ YPPHP
     |     |____Debug
     |     |       |----调试工具目录
     |     |____Libraries
-    |             |----各种类库
-    |             |____FormValidation.php
-    |             |       |---- 表单验证类
-    |             |____Page.php
-    |             |       |---- 分页类
-    |              |____Upload.php
-    |                      |---- 上传类
+    |     |       |----各种类库
+    |     |       |____FormValidation.php
+    |     |       |       |---- 表单验证类
+    |     |       |____Page.php
+    |     |       |       |---- 分页类
+    |     |       |____Upload.php
+    |     |               |---- 上传类
+    |     |____ThirdParty
+    |     |       |---- 第三方组件目录
+    |     |____Autoload.php
+    |     |       |----自动加载类
+    |     |____Bootstrap.php
+    |     |       |----启动框架入口
+    |     |____FileLocator.php
+    |     |       |----本地文件加载类
+    |     |____Functions.php
+    |     |       |----框架函数库
+    |     |____YP.php
+    |     |       |----框架核心处理类
     |____composer.json
     |____README.md
 

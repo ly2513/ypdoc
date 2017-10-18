@@ -437,6 +437,8 @@
     |     |       |---- &#x7B2C;&#x4E09;&#x65B9;&#x7EC4;&#x4EF6;&#x76EE;&#x5F55;
     |     |____Views
     |             |---- &#x89C6;&#x56FE;&#x76EE;&#x5F55;
+    |_____Cache
+    |      |-----&#x5B58;&#x653E;&#x7F13;&#x5B58;(session&#x4FE1;&#x606F;&#x3001;&#x6A21;&#x677F;&#x7F13;&#x5B58;&#x3001;&#x65E5;&#x5FD7;&#x7B49;&#x7B49;)
     |_____public
     |      |____index.php
     |      |      |---- &#x6846;&#x67B6;&#x5165;&#x53E3;
@@ -448,8 +450,6 @@
     |     |   |----&#x6846;&#x67B6;&#x76EE;&#x5F55;
     |     |____Config
     |     |       |-----&#x5404;&#x79CD;&#x6846;&#x67B6;&#x7684;&#x914D;&#x7F6E;
-    |     |____Cache
-    |     |       |-----&#x5B58;&#x653E;&#x7F13;&#x5B58;(session&#x4FE1;&#x606F;&#x3001;&#x6A21;&#x677F;&#x7F13;&#x5B58;&#x3001;&#x65E5;&#x5FD7;&#x7B49;&#x7B49;)
     |     |____Core
     |     |       |____Functions.php
     |     |       |       |---- &#x6846;&#x67B6;&#x81EA;&#x7528;&#x51FD;&#x6570;&#x6587;&#x4EF6;
@@ -457,7 +457,7 @@
     |     |       |       |---- &#x57FA;&#x7C7B;&#x63A7;&#x5236;&#x5668;
     |     |       |____YP_Exceptions.php
     |     |       |       |---- &#x5F02;&#x5E38;&#x5904;&#x7406;&#x7C7B;
-    |     |        |____YP_Filter.php
+    |     |       |____YP_Filter.php
     |     |       |       |---- &#x8FC7;&#x6EE4;&#x5904;&#x7406;&#x7C7B;
     |     |       |____YP_Hooks.php
     |     |       |       |---- &#x5404;&#x79CD;&#x94A9;&#x5B50;&#x5904;&#x7406;&#x7C7B;
@@ -480,13 +480,25 @@
     |     |____Debug
     |     |       |----&#x8C03;&#x8BD5;&#x5DE5;&#x5177;&#x76EE;&#x5F55;
     |     |____Libraries
-    |             |----&#x5404;&#x79CD;&#x7C7B;&#x5E93;
-    |             |____FormValidation.php
-    |             |       |---- &#x8868;&#x5355;&#x9A8C;&#x8BC1;&#x7C7B;
-    |             |____Page.php
-    |             |       |---- &#x5206;&#x9875;&#x7C7B;
-    |              |____Upload.php
-    |                      |---- &#x4E0A;&#x4F20;&#x7C7B;
+    |     |       |----&#x5404;&#x79CD;&#x7C7B;&#x5E93;
+    |     |       |____FormValidation.php
+    |     |       |       |---- &#x8868;&#x5355;&#x9A8C;&#x8BC1;&#x7C7B;
+    |     |       |____Page.php
+    |     |       |       |---- &#x5206;&#x9875;&#x7C7B;
+    |     |       |____Upload.php
+    |     |               |---- &#x4E0A;&#x4F20;&#x7C7B;
+    |     |____ThirdParty
+    |     |       |---- &#x7B2C;&#x4E09;&#x65B9;&#x7EC4;&#x4EF6;&#x76EE;&#x5F55;
+    |     |____Autoload.php
+    |     |       |----&#x81EA;&#x52A8;&#x52A0;&#x8F7D;&#x7C7B;
+    |     |____Bootstrap.php
+    |     |       |----&#x542F;&#x52A8;&#x6846;&#x67B6;&#x5165;&#x53E3;
+    |     |____FileLocator.php
+    |     |       |----&#x672C;&#x5730;&#x6587;&#x4EF6;&#x52A0;&#x8F7D;&#x7C7B;
+    |     |____Functions.php
+    |     |       |----&#x6846;&#x67B6;&#x51FD;&#x6570;&#x5E93;
+    |     |____YP.php
+    |     |       |----&#x6846;&#x67B6;&#x6838;&#x5FC3;&#x5904;&#x7406;&#x7C7B;
     |____composer.json
     |____README.md
 </code></pre><h3 id="&#x9ED8;&#x8BA4;&#x76EE;&#x5F55;">&#x9ED8;&#x8BA4;&#x76EE;&#x5F55;</h3>
@@ -554,7 +566,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"目录结构","level":"1.2.1","depth":2,"next":{"title":"框架安装","level":"1.2.2","depth":2,"path":"chapter-1/install.md","ref":"chapter-1/install.md","articles":[]},"previous":{"title":"基础","level":"1.2","depth":1,"path":"chapter-1/README.md","ref":"chapter-1/README.md","articles":[{"title":"目录结构","level":"1.2.1","depth":2,"path":"chapter-1/directoryStructure.md","ref":"chapter-1/directoryStructure.md","articles":[]},{"title":"框架安装","level":"1.2.2","depth":2,"path":"chapter-1/install.md","ref":"chapter-1/install.md","articles":[]},{"title":"开发规范","level":"1.2.3","depth":2,"path":"chapter-1/standard.md","ref":"chapter-1/standard.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter-1/directoryStructure.md","mtime":"2017-05-05T08:16:44.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-10-17T02:23:57.351Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"目录结构","level":"1.2.1","depth":2,"next":{"title":"框架安装","level":"1.2.2","depth":2,"path":"chapter-1/install.md","ref":"chapter-1/install.md","articles":[]},"previous":{"title":"基础","level":"1.2","depth":1,"path":"chapter-1/README.md","ref":"chapter-1/README.md","articles":[{"title":"目录结构","level":"1.2.1","depth":2,"path":"chapter-1/directoryStructure.md","ref":"chapter-1/directoryStructure.md","articles":[]},{"title":"框架安装","level":"1.2.2","depth":2,"path":"chapter-1/install.md","ref":"chapter-1/install.md","articles":[]},{"title":"开发规范","level":"1.2.3","depth":2,"path":"chapter-1/standard.md","ref":"chapter-1/standard.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter-1/directoryStructure.md","mtime":"2017-10-18T02:15:56.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-10-17T02:23:57.351Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
